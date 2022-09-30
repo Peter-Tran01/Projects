@@ -76,9 +76,11 @@ public class ArrayHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
 
     @Override
     public T removeMin() {
+        // no items
         if (items.size() == START_INDEX) {
             throw new NoSuchElementException();
         }
+        // only one item
         if (items.size() == 1 + START_INDEX) {
             itemMap.clear();
             return items.remove(START_INDEX).getItem();
@@ -94,7 +96,6 @@ public class ArrayHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
 
     @Override
     public void changePriority(T item, double priority) {
-        //System.out.println("    >Changing Priority!");
         if (!contains(item)) {
             throw new NoSuchElementException();
         }
@@ -118,7 +119,6 @@ public class ArrayHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
         double parePriority = items.get(pareIndex).getPriority();
         // swap w/ parent node if necessary
         while (currPriority < parePriority) {
-            //System.out.println("   > Percolating Up!");
             // swap nodes
             swap(currIndex, pareIndex);
             currIndex = pareIndex;
